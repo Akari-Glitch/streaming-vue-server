@@ -1,0 +1,11 @@
+{
+  "name": "streaming-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Akari-Glitch <cuartetodeperturbados@gmail.com>",
+  "license": "Akari-GLitch",
+  "dependencies": {
+    "express": "^4.17.2",
+    "socket.io": "^4.4.1"
+  }
+}
