@@ -1,18 +1,23 @@
 const express = require('express');
-const http = require('http');
+var fs = require('fs');
+var https = require('https');
 const { Server } = require('socket.io');
 
 const app = express();
-const server = http.createServer(app);
+const server = https.createServer({
+   cert: fs.readFileSync('MyCertificate.crt'),
+   key: fs.readFileSync('MyKey.key')
+ }, app);
 const io = new Server(server, {
     cors: {
-        origin: "*",
+        origin: "",
         methods: ['GET', "POST"]
     }
 });
 
 io.on('connection', (socket) => {
-    socket.on('stream', {image} =>{
+    console.log('usuario conectado');
+    socket.on('stream', (image) =>{
         socket.broadcast.emit('stream', image); 
     })
 })
